@@ -1,0 +1,8 @@
+# Ignore all pdfs xd
+*.pdf
+
+# Ignore all pyc stuff
+*.pyc
+
+# Ignore all possible sqlite databases 
+*.db
