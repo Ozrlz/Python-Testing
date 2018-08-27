@@ -12,4 +12,4 @@ WORKDIR /home/app
 
 EXPOSE $FLASK_PORT
 
-CMD ["python", "app.py"]
+CMD ["python", "-m", "unittest", "discover", "-s", "./src"]
