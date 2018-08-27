@@ -1,7 +1,9 @@
 from unittest import TestCase
+
 from blog import Blog
 
-class BlogTest(TestCase):
+
+class TestBlog(TestCase):
 
     def test_create_blog(self):
         blog = Blog('Test', 'Test author')

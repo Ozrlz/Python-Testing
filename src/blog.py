@@ -1,3 +1,5 @@
+from post import Post
+
 class Blog(object):
     def __init__(self, title, author):
         self.title = title
@@ -8,7 +10,7 @@ class Blog(object):
         return '{} by {} ({} posts)'.format(self.title, self.author, len(self.posts))
     
     def create_post(self, title, content):
-        pass
+        self.posts.append(Post(title, content))
 
     def json(self):
         return {
