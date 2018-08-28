@@ -8,8 +8,8 @@ RUN pip install -r /requirements.txt && apt update && \
     apt install -y nano python3-dev curl && useradd flask -m
 
 USER flask
-WORKDIR /home/app
+WORKDIR /home/app/src
 
 EXPOSE $FLASK_PORT
 
-CMD ["python", "-m", "unittest", "discover", "-s", "./src"]
+CMD ["python", "app.py"]
