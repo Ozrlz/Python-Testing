@@ -1,6 +1,8 @@
 from unittest import TestCase
+from unittest.mock import patch
 
 from blog import Blog
+from post import Post
 
 class TestBlog(TestCase):
 
@@ -40,3 +42,10 @@ class TestBlog(TestCase):
         }
 
         self.assertDictEqual(expexted, blog.json())
+
+    def test_print_posts(self):
+        blog = Blog('Test', 'Test author')
+        blog.create_post('Test post', 'Test content')
+        with patch('post.Post.print_post') as mocked_print_post:
+            blog.print_posts()
+            mocked_print_post.assert_called_once()

@@ -18,3 +18,7 @@ class Blog(object):
             'author': self.author,
             'posts': [post.json() for post in self.posts],
         }
+    
+    def print_posts(self):
+        for post in self.posts:
+            post.print_post()
