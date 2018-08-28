@@ -8,8 +8,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_wolrd():
-    return jsonify(
-        {
+    return jsonify({
             'message': 'Hello world c:'
         }
     )
