@@ -1,10 +1,16 @@
-from unittest import TestCase
+from tests.system.base_test import BaseTest
+import json
 
-from app import app
 
+class TestHome(BaseTest):
 
-class TestHome(TestCase):
-
-    def test_home(self):
-        with app.test_client() as client:
+    def test_home_status_code(self):
+        with self.app() as client:
             response = client.get('/')
+            self.assertEqual(200, response.status_code
+            )
+    def test_home_response(self):
+        with self.app() as client:
+            response = client.get('/')
+            self.assertEqual(json.loads(response.get_data()),
+                                {'message': 'Hello world c:'})
