@@ -1,1 +1,4 @@
-flask
+Flask
+Flask-RESTful
+Flask-SQLAlchemy
+psycopg2
