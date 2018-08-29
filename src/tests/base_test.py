@@ -6,12 +6,16 @@ It allows for instantiation of the database dynamically and makes sure it is a
 blank db each time
 """
 from unittest import TestCase
+from sys import exc_info
+from pdb import post_mortem
+from functools import wraps
+from traceback import print_exception
 
 from app import app
 from db import db
 
 
-def BaseTest(TestCase):
+class BaseTest(TestCase):
 
     def setUp(self):
         # Setup db 
@@ -26,6 +30,22 @@ def BaseTest(TestCase):
     def tearDown(self):
         # Makes sure that the db is erased
         with app.app_context():
-            db.sesion.remove()
+            db.session.remove()
             db.drop_all()
         pass
+
+    # Define a sexy decorator uwu
+    def debug_on(*exceptions):
+        if not exceptions:
+            exceptions = (AssertionError,)
+        def decorator(callback):
+            @wraps(callback)
+            def wrapper(*args, **kwargs):
+                try:
+                    return callback(*args, *kwargs)
+                except exceptions:
+                    info = exc_info()
+                    print_exception(*info)
+                    post_mortem(info[2])
+            return wrapper
+        return decorator
