@@ -9,8 +9,8 @@ The Dockerfile has an entrypoint and a CMD that passes a default argument (runse
 
 The valid arguments are:
 
-    > * runserver (runs the flask app)
-    > * runtests (run the tests in the flask app)
+    * runserver (runs the flask app)
+    * runtests (run the tests in the flask app)
 
 So, a valid command to run it would be
 
