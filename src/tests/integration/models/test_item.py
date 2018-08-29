@@ -1,11 +1,13 @@
 from models.item import ItemModel
+from models.store import StoreModel
 from tests.base_test import BaseTest
 
 class ItemTest(BaseTest):
 
     def test_crud(self):
         with self.app_context():
-            item = ItemModel('Test', 19.99)
+            StoreModel('test').save_to_db()
+            item = ItemModel('Test', 19.99, 1)
 
             self.assertIsNone(ItemModel.find_by_name('Test'))
             item.save_to_db()

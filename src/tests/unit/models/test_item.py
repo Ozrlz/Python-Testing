@@ -5,7 +5,7 @@ from models.item import ItemModel
 class TestItem(TestCase):
 
     def setUp(self):
-        self.item = ItemModel('Test name', 123.123)
+        self.item = ItemModel('Test name', 123.123, 1)
 
     def test_create_item(self):
         self.assertEqual(self.item.name,'Test name' )
