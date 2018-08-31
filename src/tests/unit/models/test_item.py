@@ -1,8 +1,8 @@
-from unittest import TestCase
+from tests.unit.unit_test_base import UnitTestBase
 
 from models.item import ItemModel
 
-class TestItem(TestCase):
+class TestItem(UnitTestBase):
 
     def setUp(self):
         self.item = ItemModel('Test name', 123.123, 1)
