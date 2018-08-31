@@ -10,6 +10,8 @@ class TestItem(TestCase):
     def test_create_item(self):
         self.assertEqual(self.item.name,'Test name' )
         self.assertEqual(self.item.price, 123.123)
+        self.assertEqual(self.item.store_id,1)
+        self.assertIsNone(self.item.store)
 
     def test_json(self):
         expected_response = {
