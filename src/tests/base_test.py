@@ -18,17 +18,14 @@ from db import db
 class BaseTest(TestCase):
 
     def setUp(self):
-        # Setup db 
         app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'
         with app.app_context():
             db.init_app(app)
             db.create_all()
-        # gives a client
         self.app = app.test_client()
         self.app_context = app.app_context
 
     def tearDown(self):
-        # Makes sure that the db is erased
         with app.app_context():
             db.session.remove()
             db.drop_all()
@@ -36,6 +33,18 @@ class BaseTest(TestCase):
 
     # Define a sexy decorator uwu
     def debug_on(*exceptions):
+        ''' Decorator used to start a pdb debugger whenever one of the 
+        exceptions passed as *args got hitted.
+        If None, AssertionError is excepted 
+        
+        Args:
+            *exceptions: Exceptions to expect
+            
+        Usage:
+            @debug_on()
+                def test_fails_on_assertion(self):
+                    ...
+        '''
         if not exceptions:
             exceptions = (AssertionError,)
         def decorator(callback):
